@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI # type: ignore
 from agent import process_query
 from schemas import Query
@@ -13,6 +14,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+port = int(os.environ.get("PORT", 8000))
+print(port)
+
 @app.get("/")
 def ask_question():
     return {"message": "Welcome to the Titanic Chatbot API! Please make a POST request to the /ask endpoint with a JSON body containing your question."}
@@ -25,4 +29,4 @@ def ask_question(query: Query):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=port)
