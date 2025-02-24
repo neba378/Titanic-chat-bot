@@ -10,7 +10,7 @@ question = st.text_input("Ask a question:")
 if st.button("Ask"):
     if question:
         with st.spinner("Thinking... 🤔"):
-            response = requests.post("http://localhost:8000/ask", json={"question": question}).json()
+            response = requests.post("https://titanic-chat-bot-production.up.railway.app/ask", json={"question": question}).json()
         st.subheader("📄 Answer:")
         if response["chart"]:
             chart = base64.b64decode(response["chart"])
