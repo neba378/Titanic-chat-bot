@@ -1,8 +1,17 @@
 from fastapi import FastAPI # type: ignore
 from agent import process_query
 from schemas import Query
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def ask_question():
