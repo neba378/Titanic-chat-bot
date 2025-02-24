@@ -12,9 +12,13 @@ if st.button("Ask"):
         with st.spinner("Thinking... 🤔"):
             response = requests.post("https://titanic-chat-bot-production.up.railway.app/ask", json={"question": question}).json()
         st.subheader("📄 Answer:")
-        if response["chart"]:
+        print(response)
+        if 'chart' in response:
             chart = base64.b64decode(response["chart"])
             st.image(chart, caption="Generated Chart")
-        st.write(response["answer"])
+        if 'answer' in response:
+            st.write(response["answer"])
+        else:
+            st.error("An error occured! Please try again.")
     else:
         st.warning("Please enter a question to ask the chatbot.")
