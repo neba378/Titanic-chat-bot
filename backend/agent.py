@@ -6,7 +6,6 @@ import os
 import base64
 import matplotlib.pyplot as plt
 import io
-import spacy
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 
@@ -23,7 +22,7 @@ gemini_model = GoogleGenerativeAI(model="gemini-pro", temperature=0.8)
 agent = create_pandas_dataframe_agent(gemini_model, df, verbose=True, allow_dangerous_code=True)
 
 # Load NLP models
-nlp = spacy.load("en_core_web_sm")
+
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")  # Small, fast embedding model
 
 # Dataset column descriptions (for better understanding)
