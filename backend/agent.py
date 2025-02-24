@@ -1,14 +1,15 @@
-from dotenv import load_dotenv
-from langchain_google_genai import GoogleGenerativeAI
-from langchain_experimental.agents import create_pandas_dataframe_agent
-import pandas as pd
-import os
-import base64
-import matplotlib.pyplot as plt
+# Standard library imports
 import io
-import spacy
+import base64
+
+# Third-party imports
+from dotenv import load_dotenv
+import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
+from langchain_google_genai import GoogleGenerativeAI
+from langchain_experimental.agents import create_pandas_dataframe_agent
 
 # Load environment variables
 load_dotenv()
@@ -22,8 +23,6 @@ gemini_model = GoogleGenerativeAI(model="gemini-pro", temperature=0.8)
 # Create LangChain agent
 agent = create_pandas_dataframe_agent(gemini_model, df, verbose=True, allow_dangerous_code=True)
 
-# Load NLP models
-nlp = spacy.load("en_core_web_sm")
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")  # Small, fast embedding model
 
 # Dataset column descriptions (for better understanding)
