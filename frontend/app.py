@@ -10,7 +10,7 @@ question = st.text_input("Ask a question:")
 if st.button("Ask"):
     if question:
         with st.spinner("Thinking... 🤔"):
-            BACKEND_URL = "https://titanic-chat-bot-production.up.railway.app"
+            BACKEND_URL = "http://localhost:8000"
             response = requests.post(f"{BACKEND_URL}/ask", json={"question": question}).json()
 
         st.subheader("📄 Answer:")
