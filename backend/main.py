@@ -53,7 +53,7 @@ app.add_middleware(
 port = int(os.environ.get("PORT", 8000))
 
 @app.get("/")
-def ask_question():
+def home():
     return {"message": "Welcome to the Titanic Chatbot API! Please make a POST request to the /ask endpoint with a JSON body containing your question."}
 
 @app.post("/ask")
@@ -63,4 +63,4 @@ def ask_question(query: Query):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="localhost", port=port)
+    uvicorn.run(app, host="0.0.0.0", port=port)
